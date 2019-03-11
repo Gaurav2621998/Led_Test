@@ -48,7 +48,7 @@ public class Home_Activity extends AppCompatActivity {
 
 
 
-        if(AreaList.size() > 1)
+     //   if(AreaList.size() > 1)
         {
             homeDataAdapter=new HomeDataAdapter(this,AreaList);
             recyclerView.setAdapter(homeDataAdapter);
@@ -66,7 +66,9 @@ public class Home_Activity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    startActivity(new Intent(Home_Activity.this,Area_Add.class));
+                    Intent intent=new Intent(Home_Activity.this,Area_Add.class);
+                    intent.putExtra("operation","add");
+                    startActivity(intent);
             }
         });
 

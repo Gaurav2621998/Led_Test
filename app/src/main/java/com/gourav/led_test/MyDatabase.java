@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.Display;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -81,9 +82,27 @@ public class MyDatabase extends SQLiteOpenHelper {
             return Arealist1;
         }
 
+    }
+
+    public void deleterow(String name)
+    {
+
+        SQLiteDatabase myDB=this.getWritableDatabase();
+//        myDB.execSQL("insert into "+DB_Table+"(areaname) values('"+name+"hh"+"');");
+//        Toast.makeText(ct, "Table Created and Data saved", Toast.LENGTH_LONG).show();
 
 
-
+//        myDB=getReadableDatabase();
+//        Cursor cursor= myDB.rawQuery("Select * from "+ DB_Table + " where areaname="+name,null);
+//        String s1=cursor.getString(1);
+//        Toast.makeText(ct, ""+s1, Toast.LENGTH_SHORT).show();
+        //if(!(cursor.getString(0)).equals(""))
+        {
+       // myDB.delete(DB_Table, "areaname = " + name, null);
+            String deleteQuery = "DELETE FROM "+ DB_Table + " WHERE  areaname='"+name+"'" ;
+            myDB.execSQL(deleteQuery);
+           }
 
     }
+
 }
