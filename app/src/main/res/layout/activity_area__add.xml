@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Area_Add">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:elevation="4dp"
+        android:id="@+id/r2"
+        android:background="#8D49A5CE"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_black_24dp"
+            android:layout_margin="24dp"
+            android:id="@+id/ok"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Area Name"
+            android:layout_marginTop="130dp"
+            android:textColor="#315D83"
+            android:textSize="20sp"
+            android:id="@+id/areaPlaceholder"
+            android:layout_marginLeft="40dp"
+
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_marginLeft="40dp"
+            android:textColor="#000000"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:hint="Ex. Living Room  "
+            android:id="@+id/roomname"
+            android:backgroundTint="#ffffff"
+            android:layout_below="@+id/areaPlaceholder"
+            />
+
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:backgroundTint="#FFA426"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        />
+
+
+</RelativeLayout>

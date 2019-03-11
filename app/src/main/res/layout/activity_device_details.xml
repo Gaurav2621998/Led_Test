@@ -39,6 +39,41 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/on3"
+        android:layout_toRightOf="@+id/on2"
+        android:text="on3"
+        />
+    <Button
+        android:layout_below="@+id/on3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/off3"
+        android:layout_toRightOf="@+id/off2"
+        android:text="OFF3"
+        />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/on4"
+        android:layout_toRightOf="@+id/on3"
+        android:text="on4"
+        />
+    <Button
+        android:layout_below="@+id/on4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/off4"
+        android:layout_toRightOf="@+id/off3"
+        android:text="OFF4"
+        />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/showstatus"
         android:layout_below="@id/off"
         android:text="Show Status"

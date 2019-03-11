@@ -39,6 +39,7 @@ import com.stsdemo.test.BleLedDeviceNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 import static java.sql.Types.NULL;
@@ -73,6 +74,9 @@ public class DeviceScanActivity extends ListActivity {
 	public static String node_Address="";
 
 	public Messenger mServiceMsgr;
+
+	public List<String>AddressList=new ArrayList<>();
+
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -243,6 +247,8 @@ public class DeviceScanActivity extends ListActivity {
 		Intent intent = new Intent(this, DeviceDetails.class);
 		intent.putExtra("Address",
 				device.getAddress());
+		intent.putStringArrayListExtra("devicelist", (ArrayList<String>) AddressList);
+
 		startActivity(intent);
 
 		if (device == null) {
@@ -340,19 +346,21 @@ public class DeviceScanActivity extends ListActivity {
 						{
                            // Toast.makeText(DeviceScanActivity.this, sAddr[0] + rssi, Toast.LENGTH_SHORT).show();
 							count++;
+								if(!(AddressList.contains(device.getAddress().toString()))) {
+									AddressList.add(device.getAddress().toString());
+								}
+								mLeDeviceListAdapter.addDevice(device, rssi);
+								mLeDeviceListAdapter
+										.AddNodeMode(
+												device.getAddress(),
+												rssi,
+												scanRecord[27]);
+								//Toast.makeText(DeviceScanActivity.this, "scanrecord : "+String.valueOf(scanRecord[27]), Toast.LENGTH_SHORT).show();
+								mLeDeviceListAdapter.notifyDataSetChanged();
+								//boolean bCanSelectRoot = false;
 
-							mLeDeviceListAdapter.addDevice(device, rssi);
-							mLeDeviceListAdapter
-							.AddNodeMode(
-									device.getAddress(),
-									rssi,
-									scanRecord[27]);
-							//Toast.makeText(DeviceScanActivity.this, "scanrecord : "+String.valueOf(scanRecord[27]), Toast.LENGTH_SHORT).show();
-							mLeDeviceListAdapter.notifyDataSetChanged();
-							//boolean bCanSelectRoot = false;
 
-							
-							
+
 						
 							Added = false;
 							for (int i = 0; i < Devicecount; i++) {

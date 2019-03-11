@@ -18,9 +18,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home_Activity"></activity>
+        <activity android:name=".Area_Add"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".DeviceScanActivity" />
         <activity android:name=".DeviceDetails" />
-        <activity android:name=".DeviceScanActivity">
+        <activity android:name=".Home_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

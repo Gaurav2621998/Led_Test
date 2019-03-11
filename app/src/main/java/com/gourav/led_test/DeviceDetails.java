@@ -1,5 +1,6 @@
 package com.gourav.led_test;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -22,16 +23,20 @@ import android.widget.Toast;
 import com.stsdemo.test.BleLedCmd;
 import com.stsdemo.test.BleLedDeviceNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.content.ContentValues.TAG;
 
 public class DeviceDetails extends AppCompatActivity {
 
-    Button on2,off2,status,on1,off1;
+    Button on2,off2,on3,on4,off3,off4,status,on1,off1;
     TextView textView;
 
     String temp2;
 
     public int check= 0;
+    List<String> AddressList=new ArrayList<>();
 
     String temp="";
     String x="";
@@ -41,9 +46,12 @@ public class DeviceDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_details);
 
-        String sRootBdAddr=getIntent().getStringExtra("Address");
+        final String sRootBdAddr=getIntent().getStringExtra("Address");
 
+        AddressList=getIntent().getStringArrayListExtra("devicelist");
       //  mJScriptMessenger = new Messenger(new ActivityHandler());
+
+        Toast.makeText(this, ""+sRootBdAddr, Toast.LENGTH_SHORT).show();
 
         sendBleLedCommand(sRootBdAddr, BleLedCmd.Svr2Node2);
 
@@ -72,125 +80,260 @@ public class DeviceDetails extends AppCompatActivity {
         on2=(Button)findViewById(R.id.on2);
         off2=(Button)findViewById(R.id.off2);
 
+        on3=(Button)findViewById(R.id.on3);
+        off3=(Button)findViewById(R.id.off3);
+
+        on4=(Button)findViewById(R.id.on4);
+        off4=(Button)findViewById(R.id.off4);
+
+
 
         status=(Button)findViewById(R.id.showstatus);
         textView=(TextView)findViewById(R.id.status);
 
+        final List<String> finalAddressList1 = AddressList;
         on1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLedStatus(temp,"FF0043","1","0","0","2");
-//                statuschange(x,"1",50);
-//                statuschange("000030B7012F","1",100);
 
-//                Handler handler=new Handler();
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        setLedStatus(x,"FF0043","1","0","0","2");
-//                        Handler handler1=new Handler();
-//                        handler1.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                setLedStatus("000030B9012F","FFFFFF","1","0","0","15");
-//
-//                            }
-//
-//
-//                        },20);
-//                    }
-//
-//
-//                },20);
-//              // sendBleLedCommand(temp2, BleLedCmd.Svr2Node2);
+                final ProgressDialog progressDialog;
+                progressDialog=new ProgressDialog(DeviceDetails.this);
+                progressDialog.setTitle("1"+"/"+""+AddressList.size());
+               // progressDialog.show();
 
-//                setLedStatus("000030B9012F","FFFFFF","1","0","0","15");
+                for(int i = 0; i< AddressList.size(); i++)
+                {
 
+                    Handler handler=new Handler();
+                    final int finalI = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
 
+                            setLedStatus(AddressList.get(finalI),"FF0043","1","0","0","2");
+                            progressDialog.setTitle(""+finalI+"/"+""+AddressList.size());
+
+                            if(finalI==(AddressList.size()-1))
+                            {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },100*i);
+
+                }
 
             }
-
-
         });
-
-
-
-
-        off1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setLedStatus(temp,"FFFFFF","0","0","0","15");
-//                statuschange(x,"0",50);
-//                statuschange("000030B7012F","0",100);
-                //sendBleLedCommand(temp2, BleLedCmd.Svr2Node2);
-//                Handler handler=new Handler();
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        setLedStatus(x,"FFFFFF","0","0","0","15");
-//                        Handler handler1=new Handler();
-//
-//                        handler1.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                setLedStatus("000030B9012F","FFFFFF","0","0","0","15");
-//
-//                            }
-//                        },20);
-//
-//                    }
-//                },20);
-//
-            }});
-
-
-
-
 
         on2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                check=1;
 
-////                unbindService(mServiceConnection);
-////                unregisterReceiver(mAppBroadcastReceiver);
-//                registerReceiver(mAppBroadcastReceiver,
-//                        makeAppUpdateIntentFilter());
+                final ProgressDialog progressDialog;
+                progressDialog=new ProgressDialog(DeviceDetails.this);
+                progressDialog.setTitle("1"+"/"+""+AddressList.size());
+                // progressDialog.show();
 
+                for(int i = 0; i< AddressList.size(); i++)
+                {
 
+                    Handler handler=new Handler();
+                    final int finalI = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
 
+                            setLedStatus(AddressList.get(finalI),"FF0043","1","0","0","2");
+                            progressDialog.setTitle(""+finalI+"/"+""+AddressList.size());
 
+                            if(finalI==(AddressList.size()-1))
+                            {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },70*i);
 
-//                Intent intent = new Intent("toshiba.led_ble_controler.ACTION_NODE_TREE");
-//                sendBroadcast(intent);
-
-               // sendBleLedCommand(temp2, BleLedCmd.Svr2Node2);
-                setLedStatus(x,"FF0043","1","0","0","2");
-
-
+                }
 
             }
-
-
         });
+
+
+        on3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final ProgressDialog progressDialog;
+                progressDialog=new ProgressDialog(DeviceDetails.this);
+                progressDialog.setTitle("1"+"/"+""+AddressList.size());
+                // progressDialog.show();
+
+                for(int i = 0; i< AddressList.size(); i++)
+                {
+
+                    Handler handler=new Handler();
+                    final int finalI = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            setLedStatus(AddressList.get(finalI),"FF0043","1","0","0","2");
+                            progressDialog.setTitle(""+finalI+"/"+""+AddressList.size());
+
+                            if(finalI==(AddressList.size()-1))
+                            {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },30*i);
+
+                }
+
+            }
+        });
+
+
+        on4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final ProgressDialog progressDialog;
+                progressDialog=new ProgressDialog(DeviceDetails.this);
+                progressDialog.setTitle("1"+"/"+""+AddressList.size());
+                // progressDialog.show();
+
+                for(int i = 0; i< AddressList.size(); i++)
+                {
+
+                    Handler handler=new Handler();
+                    final int finalI = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            setLedStatus(AddressList.get(finalI),"FF0043","1","0","0","2");
+                            progressDialog.setTitle(""+finalI+"/"+""+AddressList.size());
+
+                            if(finalI==(AddressList.size()-1))
+                            {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },50*i);
+
+                }
+
+            }
+        });
+
+
+
+        final List<String> finalAddressList = AddressList;
+        off1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                for(int i = 0; i< AddressList.size(); i++)
+                {
+
+                    Handler handler=new Handler();
+                    final int finalI = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setLedStatus(AddressList.get(finalI),"FF0043","0","0","0","2");
+//
+                        }
+                    },100*i);
+
+                }
+
+            }});
 
         off2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //sendBleLedCommand(temp2, BleLedCmd.Svr2Node2);
-                setLedStatus(x,"FFFFFF","0","0","0","15");
 
-            }
-        });
+                for(int i = 0; i< AddressList.size(); i++)
+                {
+
+                    Handler handler=new Handler();
+                    final int finalI = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setLedStatus(AddressList.get(finalI),"FF0043","0","0","0","2");
+//
+                        }
+                    },70*i);
+
+                }
+
+            }});
+
+        off3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                for(int i = 0; i< AddressList.size(); i++)
+                {
+
+                    Handler handler=new Handler();
+                    final int finalI = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setLedStatus(AddressList.get(finalI),"FF0043","0","0","0","2");
+//
+                        }
+                    },30*i);
+
+                }
+
+            }});
+
+        off4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                for(int i = 0; i< AddressList.size(); i++)
+                {
+
+                    Handler handler=new Handler();
+                    final int finalI = i;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setLedStatus(AddressList.get(finalI),"FF0043","0","0","0","2");
+//
+                        }
+                    },50*i);
+
+                }
+
+            }});
+
 
 
         status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    getDevSts(temp);
+                getDevSts(sRootBdAddr);
             }
         });
+
+
+
+
+
+
+
+
+
 
     }
 
@@ -204,6 +347,8 @@ public class DeviceDetails extends AppCompatActivity {
 
             }
         },time);
+
+
 
     }
 
@@ -221,6 +366,8 @@ public class DeviceDetails extends AppCompatActivity {
             msg.setData(bundle);
 
             mServiceMsgr.send(msg);
+
+            
         } catch(RemoteException e) {
             Log.d(TAG, e.toString());
             Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
@@ -486,6 +633,7 @@ public class DeviceDetails extends AppCompatActivity {
 
         bundle.putByteArray("TargetBdAddr", bCmd);
         msg.setData(bundle);
+
 
 
         try {
