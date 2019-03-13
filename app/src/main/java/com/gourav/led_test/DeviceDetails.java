@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ import static android.content.ContentValues.TAG;
 public class DeviceDetails extends AppCompatActivity {
 
     Button on2,off2,on3,on4,off3,off4,status,on1,off1;
-    TextView textView;
+    EditText textView;
 
     String temp2;
 
@@ -89,7 +90,7 @@ public class DeviceDetails extends AppCompatActivity {
 
 
         status=(Button)findViewById(R.id.showstatus);
-        textView=(TextView)findViewById(R.id.status);
+        textView=(EditText) findViewById(R.id.status);
 
         final List<String> finalAddressList1 = AddressList;
         on1.setOnClickListener(new View.OnClickListener() {
@@ -245,7 +246,7 @@ public class DeviceDetails extends AppCompatActivity {
                             setLedStatus(AddressList.get(finalI),"FF0043","0","0","0","2");
 //
                         }
-                    },100*i);
+                    },200*i);
 
                 }
 
@@ -267,7 +268,7 @@ public class DeviceDetails extends AppCompatActivity {
                             setLedStatus(AddressList.get(finalI),"FF0043","0","0","0","2");
 //
                         }
-                    },70*i);
+                    },150*i);
 
                 }
 
@@ -289,7 +290,7 @@ public class DeviceDetails extends AppCompatActivity {
                             setLedStatus(AddressList.get(finalI),"FF0043","0","0","0","2");
 //
                         }
-                    },30*i);
+                    },100*i);
 
                 }
 

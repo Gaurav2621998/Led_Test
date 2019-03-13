@@ -35,7 +35,7 @@ public class Home_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-        button1=(Button)findViewById(R.id.fragment);
+       // button1=(Button)findViewById(R.id.fragment);
         recyclerView=(RecyclerView)findViewById(R.id.home_recycler);
         myDatabase=new MyDatabase(this);
 
@@ -44,24 +44,24 @@ public class Home_Activity extends AppCompatActivity {
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        AreaList=myDatabase.getAll();
+        AreaList=myDatabase.getAllAreas();
 
 
 
-     //   if(AreaList.size() > 1)
-        {
-            homeDataAdapter=new HomeDataAdapter(this,AreaList);
-            recyclerView.setAdapter(homeDataAdapter);
-
-        }
-        button1.setVisibility(View.GONE);
-
-        button1.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton favbutton=(FloatingActionButton)findViewById(R.id.activitychange);
+        favbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myDatabase.getAll();
+                startActivity(new Intent(Home_Activity.this,DeviceScanActivity.class));
             }
         });
+
+
+
+
+        homeDataAdapter=new HomeDataAdapter(this,AreaList);
+        recyclerView.setAdapter(homeDataAdapter);
+
         button=(FloatingActionButton) findViewById(R.id.fab);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +74,16 @@ public class Home_Activity extends AppCompatActivity {
 
 
 
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finishAffinity();
 
 
     }

@@ -20,7 +20,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Area_Add"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".DeviceScanActivity" />
+        <activity android:name=".DeviceScanActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".DeviceDetails" />
         <activity android:name=".Home_Activity">
             <intent-filter>
